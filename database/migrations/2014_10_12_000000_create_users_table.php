@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->date('birthdate');
             $table->integer('gender');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

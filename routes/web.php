@@ -27,8 +27,8 @@ Route::prefix('/api')->group(function(){
 		Route::get('/user/{userId}',		GGate::USER_CONTROLLER . 'findById');
 
 		// News Entity
-		Route::get('/news', 			GGate::NEWS_CONTROLLER . 'index');
-		Route::get('/news/{newsId}', 	GGate::NEWS_CONTROLLER . 'findById');
+		Route::get('/news', 				GGate::NEWS_CONTROLLER . 'index');
+		Route::get('/news/{newsId}', 		GGate::NEWS_CONTROLLER . 'findById');
 
 	});
 
