@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 use App\GameGate\GGate;
 use App\GameGate\GGateUtil;
@@ -15,13 +15,7 @@ use App\User;
 
 class MasterController extends Controller
 {
-	private $tokenManager;
-
-	public function __construct() {
-		$this->tokenManager = new TokenManager();
-	}
-
-	public function authenticate(Request $request) {
+	public function authenticateAndGenerateToken(Request $request) {
 		$user = User::where('username', $request->username)->first();
 
 		if( $user ) {
@@ -33,8 +27,12 @@ class MasterController extends Controller
 				return GGateUtil::rspUserNotExisting();
 			}
 		} else {
-			return GGateUtil::rpsUserPasswordIncorrect();
+			return GGateUtil::rspUserPasswordIncorrect();
 		}
 
+	}
+
+	public function status( $token ) {
+		return TokenManager::status( $token );
 	}
 }

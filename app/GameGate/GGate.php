@@ -9,6 +9,9 @@ class GGate {
 	const DB_USER = "root";
 	const DB_PASS = "root";
 
+	// TOKEN CONFIG
+	const TKN_DURATION_MONTH = 1;
+
 	// CONTROLLER NAMES
 	const MSTR_CONTROLLER 	= 'MasterController@';
 	const USER_CONTROLLER 	= 'UserController@';

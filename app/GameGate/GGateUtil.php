@@ -14,13 +14,17 @@ class GGateUtil {
 		return GGateUtil::constructReponse($data, GGate::USER_DOESNT_EXIST);
 	}
 
-	public static function rpsUserPasswordIncorrect( $data = [] ) {
+	public static function rspUserPasswordIncorrect( $data = [] ) {
 		return GGateUtil::constructReponse($data, GGate::USER_DOESNT_EXIST);
 	}
 
-	private static function constructReponse( $data = [], $GameGateResponseCodeArray ) {
+	public static function rspTokenExpiredOrInvalid( $data = [] ) {
+		return GGateUtil::constructReponse($data, GGate::ERR_498);
+	}
+
+	private static function constructReponse( $data = [], $gameGateResponseCodeArray ) {
 		return response()->json(
-			array_merge($data, GGate::RQST_SUCCESS)
+			array_merge($data, $gameGateResponseCodeArray)
 		);
 	}
 }

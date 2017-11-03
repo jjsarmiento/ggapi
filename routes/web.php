@@ -29,8 +29,13 @@ Route::prefix('/api')->group(function(){
 		// News Entity
 		Route::get('/news', 			GGate::NEWS_CONTROLLER . 'index');
 		Route::get('/news/{newsId}', 	GGate::NEWS_CONTROLLER . 'findById');
+
 	});
 
-	// Token routes
-	Route::post('/authenticate', GGate::MSTR_CONTROLLER . 'authenticate');
+	Route::prefix('/token')->group(function(){
+		// Token operations
+		Route::get('/status/{tokenString}',	GGate::MSTR_CONTROLLER . 'status');
+		Route::post('/authenticate',		GGate::MSTR_CONTROLLER . 'authenticateAndGenerateToken');
+
+	});
 });
