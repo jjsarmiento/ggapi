@@ -16,9 +16,12 @@ use App\GameGate\GGate;
 //     return view('welcome');
 // });
 
+Route::get('/test', GGate::MSTR_CONTROLLER . 'test');
+
 Route::prefix('/api')->group(function(){
 
 	// protected routes
+	
 	// ADMINISTRATOR ROUTES
 	Route::group(['prefix' => '/admin', 'middleware' => ['gg-token', 'gg-rbac']], function() {
 		// Users Entity

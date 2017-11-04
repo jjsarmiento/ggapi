@@ -19,4 +19,12 @@ class Role extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    protected $touches = ['users'];
+
+    public function users() {
+    	return $this->belongsToMany('App\User', 'user_role', 'role_id', 'user_id')
+            ->as('user_role')
+            ->withTimeStamps();
+    }
 }

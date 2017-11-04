@@ -12,6 +12,7 @@ use App\GameGate\GGateUtil;
 use App\GameGate\TokenManager;
 
 use App\User;
+use App\Role;
 
 class MasterController extends Controller
 {
@@ -34,5 +35,10 @@ class MasterController extends Controller
 
 	public function status( Request $request ) {
 		return TokenManager::status( $request->header('token') );
+	}
+
+	public function test() {
+		// return response()->json(User::find(1)->roles);
+		return response()->json(Role::find(1)->users);
 	}
 }

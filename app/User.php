@@ -39,4 +39,12 @@ class User extends Authenticatable
     ];
 
     protected $dates = ['deleted_at'];
+
+    protected $touches = ['roles'];
+
+    public function roles() {
+        return $this->belongsToMany('App\Role', 'user_role', 'user_id', 'role_id')
+            ->as('user_role')
+            ->withTimeStamps();        
+    }
 }
