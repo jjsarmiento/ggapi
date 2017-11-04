@@ -7,7 +7,7 @@ class GGate {
 	// DATABASE CONFIG
 	const DB_NAME = "gg_master";
 	const DB_USER = "root";
-	const DB_PASS = "root";
+	const DB_PASS = "";
 
 	// TOKEN CONFIG
 	const TKN_DURATION_MONTH = 1;

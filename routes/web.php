@@ -19,6 +19,16 @@ use App\GameGate\GGate;
 Route::prefix('/api')->group(function(){
 
 	// protected routes
+	// ADMINISTRATOR ROUTES
+	Route::group(['prefix' => '/admin', 'middleware' => ['gg-token', 'gg-rbac']], function() {
+		// Users Entity
+		Route::get('/users',				GGate::USER_CONTROLLER . 'get');
+		Route::put('/users',				GGate::USER_CONTROLLER . 'update');
+		Route::delete('/user/{userId}',		GGate::USER_CONTROLLER . 'delete');
+		Route::get('/user/{userId}',		GGate::USER_CONTROLLER . 'findById');
+	});
+
+	// COMMON ROUTES
 	Route::group(['middleware' => ['gg-token']], function() {
 		// Users Entity
 		Route::get('/users',				GGate::USER_CONTROLLER . 'get');
@@ -34,7 +44,7 @@ Route::prefix('/api')->group(function(){
 
 	Route::prefix('/token')->group(function(){
 		// Token operations
-		Route::get('/status/{tokenString}',	GGate::MSTR_CONTROLLER . 'status');
+		Route::get('/status',				GGate::MSTR_CONTROLLER . 'status');
 		Route::post('/authenticate',		GGate::MSTR_CONTROLLER . 'authenticateAndGenerateToken');
 
 	});

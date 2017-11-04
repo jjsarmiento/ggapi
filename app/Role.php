@@ -6,17 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class News extends Model
+class Role extends Model
 {
     use Notifiable;
     use SoftDeletes;
 
-    protected $table = "news";
+    protected $table = "roles";
 
     protected $fillable = [
-    	'title',
-    	'content',
-    	'img'
+    	'code',
+    	'display'
     ];
 
     protected $dates = ['deleted_at'];

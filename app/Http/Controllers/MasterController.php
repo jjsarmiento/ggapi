@@ -32,7 +32,7 @@ class MasterController extends Controller
 
 	}
 
-	public function status( $token ) {
-		return TokenManager::status( $token );
+	public function status( Request $request ) {
+		return TokenManager::status( $request->header('token') );
 	}
 }
