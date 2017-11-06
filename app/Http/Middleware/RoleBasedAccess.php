@@ -26,14 +26,5 @@ class RoleBasedAccess
         } else {
             return GGateUtil::rspAccessUnauthorized();
         }
-
-        // foreach(RoleManager::getRoleIdByToken($token) as $key => $val) {
-        //     if( in_array($val, GGate::RL_ADMN) ) {
-        //         return $next($request);
-        //     }
-        // }
-        // if( RoleManager::isAdmin( $request ) ) {
-
-        // }
     }
 }

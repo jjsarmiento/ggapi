@@ -28,7 +28,7 @@ class RoleManager {
 		} else {
 			$token = $request;
 		}
-
+		
  		foreach(RoleManager::getRoleIdByToken( $token ) as $key => $val) {
             if( in_array($val, GGate::RL_ADMN) ) {
                 return true;

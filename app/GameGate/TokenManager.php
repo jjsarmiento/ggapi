@@ -55,4 +55,8 @@ class TokenManager {
 		return $token->content;
 	}
 
+	public static function getUserViaToken( $token ) {
+		// return User::find( $token );
+	}
+
 }
