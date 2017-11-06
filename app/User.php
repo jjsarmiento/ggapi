@@ -35,8 +35,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'deleted_at'
+        'password'
     ];
 
     protected $dates = ['deleted_at'];

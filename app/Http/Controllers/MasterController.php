@@ -40,6 +40,7 @@ class MasterController extends Controller
 	public function test() {
 		// return response()->json(User::find(1)->roles);
 		// return response()->json(Role::find(1)->users);
-		return response()->json(Role::all()->load('users'));
+		// return response()->json(Role::all()->load('users'));
+		User::find(5)->roles()->detach(1);
 	}
 }

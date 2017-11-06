@@ -25,10 +25,10 @@ Route::prefix('/api')->group(function(){
 	// ADMINISTRATOR ROUTES
 	Route::group(['prefix' => '/admin', 'middleware' => ['gg-token', 'gg-rbac']], function() {
 		// Users Entity
-		Route::get('/users',				GGate::USER_CONTROLLER . 'get');
-		Route::put('/users',				GGate::USER_CONTROLLER . 'update');
-		Route::delete('/user/{userId}',		GGate::USER_CONTROLLER . 'delete');
-		Route::get('/user/{userId}',		GGate::USER_CONTROLLER . 'findById');
+		Route::get('/users',				GGate::USER_CONTROLLER . 'adminGet');
+		Route::put('/users',				GGate::USER_CONTROLLER . 'adminUpdate');
+		Route::delete('/user/{userId}',		GGate::USER_CONTROLLER . 'adminDelete');
+		Route::get('/user/{userId}',		GGate::USER_CONTROLLER . 'adminFindById');
 	});
 
 	// COMMON ROUTES

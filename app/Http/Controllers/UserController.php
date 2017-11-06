@@ -3,25 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Request;
+use Illuminate\Http\Request;
 
 use App\GameGate\GGate;
 use App\GameGate\GGateUtil;
 use App\GameGate\TokenManager;
-use App\GameGate\RoleManager;
 
 class UserController extends Controller
 {
-    public function get( \Illuminate\Http\Request $request ) {
-        if( RoleManager::isAdminViaToken( $request ) ) {
-            return GGateUtil::rspSuccess( $this->getAllUsersWithTrashed() );
-        } else {
-            return GGateUtil::rspSuccess( $this->getAllUsers() );
-        }
+    public function get() {
+        $users = User::all();
+        $users = $users != null ? $users->load('roles') : null;
+        return GGateUtil::rspSuccess($users);
     }
 
     public function findById( $userId ) {
-        return GGateUtil::rspSuccess(User::find($userId));
+        $user = User::find($userId);
+        $user = $user != null ? $user->load('roles') : null;
+        return GGateUtil::rspSuccess($user);
     }
 
     public function delete( $userId ) {
@@ -30,14 +29,29 @@ class UserController extends Controller
     }
 
     public function update( Request $request ) {
-        
+        $user = User::find($request->id);
+        $user->update($request->all());
+        return GGateUtil::rspSuccess($user);
     }
 
-    private function getAllUsersWithTrashed() {
-        return User::withTrashed()->get()->load('roles');
+    public function adminGet() {
+        return GGateUtil::rspSuccess(User::withTrashed()->get()->load('roles'));
     }
 
-    private function getAllUsers() {
-        return User::all()->load('roles');
+    public function adminFindById( $userId ) {
+        $user = User::withTrashed()->find($userId);
+        $user = $user != null ? $user->load('roles') : null;
+        return GGateUtil::rspSuccess($user);
+    }
+
+    public function adminDelete( $userId ) {
+        User::delete($userId);
+        return GGateUtil::rspSuccess();
+    }
+
+    public function adminUpdate( Request $request ) {
+        $user = User::find($request->input('id'));
+        $user->update($request->all());
+        return GGateUtil::rspSuccess($user);
     }
 }
