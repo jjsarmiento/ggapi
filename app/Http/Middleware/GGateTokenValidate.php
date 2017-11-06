@@ -7,6 +7,7 @@ use Request;
 
 use App\GameGate\TokenManager;
 use App\GameGate\GGate;
+use App\GameGate\GGateUtil;
 
 class GGateTokenValidate
 {
@@ -24,7 +25,7 @@ class GGateTokenValidate
 		if ( TokenManager::tokenIsValid($token) ) {
 			return $next($request);
 		} else {
-			return response()->json(GGate::ERR_498);
+			return GGateUtil::rspTokenExpiredOrInvalid();
 		}
 	}
 }

@@ -41,6 +41,10 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\GGateTokenValidate::class
         ],
 
+        'gg-rbac' => [
+            \App\Http\Middleware\RoleBasedAccess::class
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',

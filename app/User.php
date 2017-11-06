@@ -35,7 +35,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password'
+        'password',
+        'deleted_at'
     ];
 
     protected $dates = ['deleted_at'];
@@ -44,6 +45,7 @@ class User extends Authenticatable
 
     public function roles() {
         return $this->belongsToMany('App\Role', 'user_role', 'user_id', 'role_id')
+            ->select(['id', 'code', 'display'])
             ->as('user_role')
             ->withTimeStamps();        
     }

@@ -23,6 +23,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 		'username' 		=> $faker->unique()->userName,
 		'password' 		=> Hash::make("password"),
 		'birthdate' 	=> $faker->date($format = '1990-10-11'),
+		'active' 		=> true,
 		'gender'		=> $faker->numberBetween($min = 1, $max = 3)
 	];
 });

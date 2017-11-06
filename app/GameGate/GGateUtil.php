@@ -22,9 +22,17 @@ class GGateUtil {
 		return GGateUtil::constructReponse($data, GGate::ERR_498);
 	}
 
-	private static function constructReponse( $data = [], $gameGateResponseCodeArray ) {
+	public static function rspAccessUnauthorized( $data = [] ) {
+		return GGateUtil::constructReponse($data, GGate::ERR_401);
+	}
+
+	private static function constructReponse( $data = null, $gameGateResponseCodeArray ) {
 		return response()->json(
-			array_merge($data, $gameGateResponseCodeArray)
+			// array_merge($data, $gameGateResponseCodeArray)
+			[
+				'content'		=> $data,
+				'status_code'	=> $gameGateResponseCodeArray
+			]
 		);
 	}
 }

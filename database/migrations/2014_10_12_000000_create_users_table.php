@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('birthdate');
             $table->integer('gender');
+            $table->boolean('active');
             $table->timestamps();
             $table->softDeletes();
         });
