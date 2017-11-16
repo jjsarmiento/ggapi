@@ -43,6 +43,7 @@ Route::prefix('/api')->group(function(){
 		Route::get('/news', 				GGate::NEWS_CONTROLLER . 'get');
 		Route::get('/news/{newsId}', 		GGate::NEWS_CONTROLLER . 'findById');
 		Route::get('/news/user/{userId}', 	GGate::NEWS_CONTROLLER . 'findByUser');
+		Route::put('/news', 				GGate::NEWS_CONTROLLER . 'update');
 	});
 
 	Route::prefix('/token')->group(function(){

@@ -11,7 +11,7 @@ use App\GameGate\GGateUtil;
 class NewsController extends Controller
 {
     public function get() {
-    	return GGateUtil::rspSuccess(News::all());
+    	return GGateUtil::rspSuccess(News::all()->load('author'));
     }
 
     public function findById( $newsId ) {

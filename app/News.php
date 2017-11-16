@@ -22,6 +22,12 @@ class News extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $hidden = [
+        'updated_at', 
+        'deleted_at',
+        'user_id'
+    ];
+
     public function author() {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }

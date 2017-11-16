@@ -37,4 +37,10 @@ class GGate {
 
 	// CLASS STRINGS
 	const LRVL_HTTP_REQUEST = "Illuminate\Http\Request";
+
+	// COLUMN SELECT FOR TABLES
+	// syntax `tablename_rolename`
+	const USERS_USER = [
+
+	];
 }
