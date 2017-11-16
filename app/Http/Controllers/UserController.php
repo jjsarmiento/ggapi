@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Token;
 use Illuminate\Http\Request;
 
 use App\GameGate\GGate;
@@ -30,8 +31,14 @@ class UserController extends Controller
 
 	public function update( Request $request ) {
 		$user = User::find($request->id);
-		$user->update($request->all());
-		return GGateUtil::rspSuccess($user);
+		$currentUserId = Token::where('content', $request->header('token'))->first()->user_id;
+
+		if( @$user->id === $currentUserId ) {
+			$user->update($request->all());
+			return GGateUtil::rspSuccess($user);	
+		} else {
+			return GGateUtil::rspOperationForbidden();
+		}
 	}
 
 	public function adminGet() {
@@ -46,7 +53,16 @@ class UserController extends Controller
 
 	public function adminDelete( $userId ) {
 		User::delete($userId);
-		return GGateUtil::rspSuccess();
+		$user = User::withTrashed()
+			->find($userId);
+		$user->forceDelete();
+
+		if( $user ) {
+	    	$user->forceDelete();
+			return GGateUtil::rspSuccess();
+		} else {
+			return GGateUtil::rspOperationForbidden();
+		}
 	}
 
 	public function adminUpdate( Request $request ) {

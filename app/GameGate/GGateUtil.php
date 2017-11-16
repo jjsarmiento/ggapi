@@ -26,6 +26,10 @@ class GGateUtil {
 		return GGateUtil::constructReponse($data, GGate::ERR_401);
 	}
 
+	public static function rspOperationForbidden( $data = [] ) {
+		return GGateUtil::constructReponse($data, GGate::ERR_403);
+	}
+
 	private static function constructReponse( $data = null, $gameGateResponseCodeArray ) {
 		return response()->json(
 			// array_merge($data, $gameGateResponseCodeArray)

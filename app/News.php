@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\GameGate\GGate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -22,11 +23,7 @@ class News extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $hidden = [
-        'updated_at', 
-        'deleted_at',
-        'user_id'
-    ];
+    // protected $hidden = GGate::TBL_NEWS_HIDDEN;
 
     public function author() {
         return $this->belongsTo('App\User', 'user_id', 'id');

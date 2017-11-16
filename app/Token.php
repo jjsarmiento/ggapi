@@ -14,4 +14,8 @@ class Token extends Model
     	'user_agent',
     	'expires_at'
     ];
+
+    public function user() {
+    	return $this->belongsTo('App\User');
+    }
 }

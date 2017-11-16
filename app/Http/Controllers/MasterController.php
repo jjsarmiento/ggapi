@@ -13,6 +13,7 @@ use App\GameGate\TokenManager;
 
 use App\User;
 use App\Role;
+use App\Token;
 
 class MasterController extends Controller
 {
@@ -42,5 +43,6 @@ class MasterController extends Controller
 		// return response()->json(Role::find(1)->users);
 		// return response()->json(Role::all()->load('users'));
 		// return response()->json(User::find(1)->load(['news_authored', 'roles']));
+		return response()->json(Token::all()->load('user'));
 	}
 }

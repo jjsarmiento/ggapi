@@ -20,6 +20,8 @@ Route::get('/test', GGate::MSTR_CONTROLLER . 'test');
 
 Route::prefix('/api')->group(function(){
 
+	// Route::post('/search/{module}')
+
 	// protected routes
 	
 	// ADMINISTRATOR ROUTES
@@ -29,6 +31,13 @@ Route::prefix('/api')->group(function(){
 		Route::put('/users',				GGate::USER_CONTROLLER . 'adminUpdate');
 		Route::delete('/user/{userId}',		GGate::USER_CONTROLLER . 'adminDelete');
 		Route::get('/user/{userId}',		GGate::USER_CONTROLLER . 'adminFindById');
+
+		// News Entity
+		Route::get('/news', 				GGate::NEWS_CONTROLLER . 'adminGet');
+		Route::get('/news/{newsId}', 		GGate::NEWS_CONTROLLER . 'adminFindById');
+		Route::get('/news/user/{userId}', 	GGate::NEWS_CONTROLLER . 'adminFindByUser');
+		Route::put('/news', 				GGate::NEWS_CONTROLLER . 'adminUpdate');
+		Route::delete('/news/{newsId}',		GGate::NEWS_CONTROLLER . 'adminDelete');
 	});
 
 	// COMMON ROUTES
