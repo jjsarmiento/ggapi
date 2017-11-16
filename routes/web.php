@@ -44,6 +44,7 @@ Route::prefix('/api')->group(function(){
 		Route::get('/news/{newsId}', 		GGate::NEWS_CONTROLLER . 'findById');
 		Route::get('/news/user/{userId}', 	GGate::NEWS_CONTROLLER . 'findByUser');
 		Route::put('/news', 				GGate::NEWS_CONTROLLER . 'update');
+		Route::delete('/news/{newsId}',		GGate::NEWS_CONTROLLER . 'delete');
 	});
 
 	Route::prefix('/token')->group(function(){

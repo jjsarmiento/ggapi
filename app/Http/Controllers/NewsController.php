@@ -27,4 +27,9 @@ class NewsController extends Controller
     	$news->update($request->all());
     	return GGateUtil::rspSuccess($news);
     }
+
+    public function delete( $newsId ) {
+    	News::destroy($newsId);
+		return GGateUtil::rspSuccess();
+    }
 }
