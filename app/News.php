@@ -16,8 +16,13 @@ class News extends Model
     protected $fillable = [
     	'title',
     	'content',
-    	'img'
+    	'img',
+    	'user_id'
     ];
 
     protected $dates = ['deleted_at'];
+
+    public function author() {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
 }

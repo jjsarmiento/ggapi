@@ -35,14 +35,14 @@ Route::prefix('/api')->group(function(){
 	Route::group(['middleware' => ['gg-token']], function() {
 		// Users Entity
 		Route::get('/users',				GGate::USER_CONTROLLER . 'get');
+		Route::get('/user/{userId}',		GGate::USER_CONTROLLER . 'findById');
 		Route::put('/users',				GGate::USER_CONTROLLER . 'update');
 		Route::delete('/user/{userId}',		GGate::USER_CONTROLLER . 'delete');
-		Route::get('/user/{userId}',		GGate::USER_CONTROLLER . 'findById');
 
 		// News Entity
-		Route::get('/news', 				GGate::NEWS_CONTROLLER . 'index');
+		Route::get('/news', 				GGate::NEWS_CONTROLLER . 'get');
 		Route::get('/news/{newsId}', 		GGate::NEWS_CONTROLLER . 'findById');
-
+		Route::get('/news/user/{userId}', 	GGate::NEWS_CONTROLLER . 'findByUser');
 	});
 
 	Route::prefix('/token')->group(function(){

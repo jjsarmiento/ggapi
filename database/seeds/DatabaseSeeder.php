@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             NewsTableSeeder::class,
             TokensTableSeeder::class,
+            OrbsTableSeeder::class,
+            FragmentsTableSeeder::class
         ]);
     }
 }

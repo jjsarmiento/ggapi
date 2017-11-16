@@ -4,23 +4,27 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsTable extends Migration
+class CreateOrbsTable extends Migration
 {
     /**
-     * Run the migrations.
+     
+     Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('orbs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('content');
+            $table->text('description');
+            $table->integer('consecutive');
             $table->text('img');
-            $table->integer('user_id');
-            $table->timestamps();
+            $table->text('tag');
+            $table->boolean('access');
+            $table->integer('owner_id');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -31,6 +35,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('orbs');
     }
 }

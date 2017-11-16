@@ -42,10 +42,16 @@ class User extends Authenticatable
 
     protected $touches = ['roles'];
 
+    // Relationship with `roles` table; Pivot table `user_role` involved
     public function roles() {
         return $this->belongsToMany('App\Role', 'user_role', 'user_id', 'role_id')
             ->select(['id', 'code', 'display'])
             ->as('user_role')
             ->withTimeStamps();        
+    }
+
+    // Relationship with `news` table
+    public function news_authored() {
+        return $this->hasMany('App\News', 'user_id', 'id');
     }
 }
