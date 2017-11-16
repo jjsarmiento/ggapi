@@ -21,4 +21,10 @@ class NewsController extends Controller
     public function findByUser( $userId ) {
     	return GGateUtil::rspSuccess(News::where('user_id', $userId)->get());
     }
+
+    public function update( Request $request ) {
+    	$news = News::find($request->id);
+    	$news->update($request->all());
+    	return GGateUtil::rspSuccess($news);
+    }
 }
